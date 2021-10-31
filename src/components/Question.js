@@ -1,7 +1,6 @@
 const Question = ({ question, setQuestion }) => {
   return (
-    <div>
-      <h1>Question</h1>
+    <div className="question-container">
       <input
         type="text"
         placeholder="Q: Enter your question here"

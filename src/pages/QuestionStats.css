@@ -1,0 +1,31 @@
+.stats {
+  padding: 15px;
+}
+
+.stats .stats-header {
+  margin: 40px 0;
+  color: #234044;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.stats .question-stats .question-stat {
+  display: flex;
+  align-items: center;
+  color: white;
+  background: linear-gradient(45deg, #7251fe, #db3ebf 70%);
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.stats .question-stats .question-stat span:last-of-type {
+  margin-right: 10px;
+  background-color: #bdcbeb;
+  color: #6090da;
+  width: 20px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 100%;
+}

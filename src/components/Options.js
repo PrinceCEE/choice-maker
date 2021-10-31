@@ -1,24 +1,34 @@
-const Options = ({ questionOptions, setQuestionOptions }) => {
+export const OptionsWithInput = ({ questionOptions, setQuestionOptions }) => {
   return (
     <div>
-      <h1>Options</h1>
-      <div>
+      <div className="options-container">
         {questionOptions.map((_, index) => (
-          <input
-            key={index}
-            type="text"
-            placeholder={String.fromCharCode(index + 65)}
-            onChange={(e) => {
-              setQuestionOptions((options) => {
-                options[index].value = e.target.value.trim();
-                return [...options];
-              });
-            }}
-          />
+          <div className="option" key={index}>
+            <span>{String.fromCharCode(index + 65)}</span>
+            <input
+              type="text"
+              placeholder="Enter answer..."
+              onChange={(e) => {
+                setQuestionOptions((options) => {
+                  options[index].value = e.target.value.trim();
+                  return [...options];
+                });
+              }}
+            />
+          </div>
         ))}
       </div>
     </div>
   );
 };
 
-export default Options;
+export const Option = ({ isAnswer, index, text }) => {
+  const className = isAnswer ? "answer-option answer" : "answer-option";
+
+  return (
+    <div className={className}>
+      <span>{String.fromCharCode(index + 65)}</span>
+      <span>{text}</span>
+    </div>
+  );
+};

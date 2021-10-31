@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Question from "../components/Question";
-import Options from "../components/Options";
+import { OptionsWithInput } from "../components/Options";
 import Button from "../components/Button";
 import QuestionContext from "../contexts";
+import "./AddQuestion.css";
+import Nav from "../components/Nav";
 
 const AddQuestion = () => {
   const history = useHistory();
@@ -13,16 +15,15 @@ const AddQuestion = () => {
 
   return (
     <div>
-      <h1>easy decision make</h1>
-      <p>
-        When the decision is too hard or too simple use the Easy Decision Maker
-      </p>
+      <div style={{ padding: "15px" }}>
+        <Nav showStats />
+      </div>
       <Question question={question} setQuestion={setQuestion} />
-      <Options
+      <OptionsWithInput
         questionOptions={questionOptions}
         setQuestionOptions={setQuestionOptions}
       />
-      <div>
+      <div className="button-group">
         <Button
           handleClick={() => {
             const lastOpt = [...questionOptions].pop();
@@ -37,22 +38,30 @@ const AddQuestion = () => {
         <Button
           handleClick={() => {
             if (question.length > 0 && questionOptions.length > 0) {
-              const { prevQuestions } = state;
-              const _question = prevQuestions.find(
-                (val) => val.question === question
+              const prevQuestions = [...state.prevQuestions];
+
+              let currentQuestion = {
+                question,
+                options: questionOptions,
+              };
+
+              const index = prevQuestions.findIndex(
+                (val) => val.question.toLowerCase() === question.toLowerCase()
               );
-              if (!_question) {
-                setState((prevState) => {
-                  return {
-                    ...prevState,
-                    currentQuestion: {
-                      question,
-                      options: questionOptions,
-                    },
-                  };
-                });
-                history.push("/answer");
+
+              if (index > -1) {
+                prevQuestions[index].count += 1;
+              } else {
+                currentQuestion.count = 1;
+                prevQuestions.push(currentQuestion);
               }
+
+              setState({
+                prevQuestions,
+                currentQuestion,
+              });
+
+              history.push("/answer");
             } else {
               alert("Incomplete question");
             }
