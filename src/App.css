@@ -1,3 +1,11 @@
+.App {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
 .Nav {
   display: flex;
   justify-content: space-between;
@@ -23,9 +31,31 @@
   font-weight: 500;
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .Nav .info span {
   font-size: small;
   margin-left: 5px;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  .App {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+  .App {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 961px) {
+  .App {
+    width: 40%;
+    margin: 0 auto;
+  }
 }

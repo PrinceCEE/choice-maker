@@ -13,15 +13,17 @@ function App() {
   });
 
   return (
-    <QuestionContext.Provider value={{ state, setState }}>
-      <Router>
-        <Switch>
-          <Route path="/" component={AddQuestion} exact />
-          <Route path="/answer" component={QuestionAnswer} exact />
-          <Route path="/stats" exact component={QuestionStats} />
-        </Switch>
-      </Router>
-    </QuestionContext.Provider>
+    <div className="App">
+      <QuestionContext.Provider value={{ state, setState }}>
+        <Router>
+          <Switch>
+            <Route path="/" component={AddQuestion} exact />
+            <Route path="/answer" component={QuestionAnswer} exact />
+            <Route path="/stats" exact component={QuestionStats} />
+          </Switch>
+        </Router>
+      </QuestionContext.Provider>
+    </div>
   );
 }
 
